@@ -175,5 +175,7 @@ def pentagonalNumber(n):
 def hexagonalNumber(n):
     return n * (2 * n - 1)
 
+def nChooseR(n, r):
+    return math.factorial(n) / (math.factorial(r) * math.factorial(n - r))
     
     

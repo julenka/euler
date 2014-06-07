@@ -4,6 +4,8 @@
 # and returns the answer.
 from euler_utils import *
 import numpy as np
+
+
 def p13():
     f = open("euler13.txt", "r")
     acc = []
@@ -659,6 +661,15 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 
     print "no consecutive primes summing to prime found!!"
 
+def p53():
+    '''How many, not necessarily distinct, values of  nCr, for 1 <= n <= 100, are greater than one-million?'''
+    count = 0
+    for n in xrange(1, 101):
+        for r in xrange(1, n):
+            if(nChooseR(n, r) > 1000000):
+                count+=1
+    print count
+
 if __name__ == '__main__':
-    p50()
+    p53()
         
