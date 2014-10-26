@@ -135,19 +135,6 @@ def is0Pandigital(str_val):
     lst.sort()
     return lst == [str(i) for i in range(0,len(str_val) + 1)]
 
-
-
-def primeSieve(lst):
-    i = 0
-    while lst[i] <= math.sqrt(lst[-1]):
-        sift = lst[i]
-        lst = [x for x in lst if (x == sift or x % sift != 0)]
-        i = i + 1
-    return lst
-    
-def primesUpTo(m):
-    return primeSieve(range(2, m))
-
 def allPerm(lst):
     """
     Returns a list of lists representing all permutations of items in the input list
