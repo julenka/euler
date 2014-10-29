@@ -5,6 +5,8 @@ import os
 FILE_DIR = os.path.dirname(__file__)
 sys.path.append(os.path.join(FILE_DIR, '..'))
 
+# Uses python-graph library: https://code.google.com/p/python-graph/
+# easy_install python-graph-core
 import pygraph.classes.graph
 import pygraph.algorithms.minmax
 
