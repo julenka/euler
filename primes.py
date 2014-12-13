@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
 """
-	Utilities for dealing with primes
+    Utilities for dealing with primes
 """
 import numpy
+
+
 def primesfrom2to(n):
     """ Input n>=6, Returns a array of primes, 2 <= p < n 
 
-    	Credit: http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
+        Credit: http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
     """
     sieve = numpy.ones(n/3 + (n%6==2), dtype=numpy.bool)
     for i in xrange(1,int(n**0.5)/3+1):
