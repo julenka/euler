@@ -14,36 +14,31 @@ import itertools
 from primes import primesfrom2to
 from collections import defaultdict
 
-MAX_PRIME = 10 ** 6
-N = 3
+prime_pow = 10
+MAX_PRIME = 10 ** prime_pow
 print "finding primes..."
 primes = primesfrom2to(MAX_PRIME)
+prime_set = set(primes)
+initial_primes = [3,7,109,673]
+
 def test(a):
     for p1, p2 in itertools.permutations(a, 2):
         s1, s2 = str(p1), str(p2)
-        if int(s1 + s2) not in primes:
+        if int(s1 + s2) not in prime_set:
             return False
     return True
 
 print "doing test..."
-pairs = set()
-possible = set()
-for p1, p2 in itertools.combinations(primes, 2):
-    if test([p1, p2]):
-        pairs.add((p1, p2))
-        pairs.add((p2, p1))
-        possible.add(p1)
 
-result = {}
-for possible_set in itertools.combinations(possible, N):
-    for pair in itertools.permutations(possible_set, 2):
-        if pair not in pairs:
-            print pair
-            break
-    else:
-        result[sum(possible_set)] = possible_set
+for p in primes:
+    print p
+    if len(str(p)) + 3 > prime_pow:
+        print "max exceeded"
+        break
 
-print possible
-print result
+    new_set = initial_primes + [p]
+    if test(new_set):
+        print new_set, sum(new_set)
+        break
 
 
