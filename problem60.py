@@ -65,5 +65,3 @@ for p1, v1 in pairs.iteritems():
                             for p5 in s3:
                                 print p1, p2, p3, p4, p5, "sum:", sum([p1, p2, p3, p4, p5])
                                 exit(0)
-
-
