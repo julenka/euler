@@ -2,9 +2,8 @@ __author__ = 'julenka'
 
 import numpy as np
 import time
-import euler_utils
+from primes import get_totient
 
-n = 10**7
 
 def is_perm(a,b):
     """ Return if a is a permutation of b
@@ -16,39 +15,8 @@ def is_perm(a,b):
     return sorted(str(a)) == sorted(str(b))
 
 
-def get_totient(phi):
-    """ Compute totient(i) for i in range(n) and stick it in phi
-
-    Copied from http://codegolf.stackexchange.com/questions/26739/super-speedy-totient-function
-
-    :param phi:
-    :return:
-    """
-    s = 0
-
-    phi[1] = 1
-
-    i = 2
-    while i < n:
-        if phi[i] == 0:
-            phi[i] = i - 1
-
-            j = 2
-
-            while j * i < n:
-                if phi[j] != 0:
-                    q = j
-                    f = i - 1
-
-                    while q % i == 0:
-                        f *= i
-                        q //= i
-
-                    phi[i * j] = f * phi[q]
-                j += 1
-        i += 1
-
 if __name__ == "__main__":
+    n = 10**7
     s1 = time.time()
     totients = np.zeros(n, np.int32)
     get_totient(totients)

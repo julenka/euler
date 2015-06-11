@@ -19,3 +19,35 @@ def primesfrom2to(n):
             sieve[k*(k-2*(i&1)+4)/3::2*k] = False
     return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
 
+def get_totient(phi):
+    """ Compute totient(i) for i in range(n) and stick it in phi
+
+    Copied from http://codegolf.stackexchange.com/questions/26739/super-speedy-totient-function
+
+    :param phi:
+    :return:
+    """
+    s = 0
+
+    n = len(phi)
+    phi[1] = 1
+
+    i = 2
+    while i < n:
+        if phi[i] == 0:
+            phi[i] = i - 1
+
+            j = 2
+
+            while j * i < n:
+                if phi[j] != 0:
+                    q = j
+                    f = i - 1
+
+                    while q % i == 0:
+                        f *= i
+                        q //= i
+
+                    phi[i * j] = f * phi[q]
+                j += 1
+        i += 1
