@@ -2,8 +2,19 @@ __author__ = 'julenka'
 
 import numpy as np
 import time
+import euler_utils
 
 n = 10**7
+
+def is_perm(a,b):
+    """ Return if a is a permutation of b
+
+    :param a:
+    :param b:
+    :return:
+    """
+    return sorted(str(a)) == sorted(str(b))
+
 
 def get_totient(phi):
     """ Compute totient(i) for i in range(n) and stick it in phi
@@ -36,15 +47,6 @@ def get_totient(phi):
                     phi[i * j] = f * phi[q]
                 j += 1
         i += 1
-
-def is_perm(a,b):
-    """ Return if a is a permutation of b
-
-    :param a:
-    :param b:
-    :return:
-    """
-    return sorted(str(a)) == sorted(str(b))
 
 if __name__ == "__main__":
     s1 = time.time()
