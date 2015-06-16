@@ -24,6 +24,10 @@ How many chains, with a starting number below one million, contain exactly sixty
 """
 __author__ = 'julenka'
 import math
+import sys
+from collections import Counter
+
+from euler_utils import  printline
 
 def factorial_of_digits(n):
     if n == 0:
@@ -35,29 +39,29 @@ def factorial_of_digits(n):
     return sum((math.factorial(n) for n in digits))
 
 def compute_chain_length(n, terminators):
-    initial = n
-    result = 0
-    values = []
-    while n not in terminators:
-        values.append(n)
+    values = set()
+    while n not in terminators and n not in values:
+        values.add(n)
         n = factorial_of_digits(n)
 
-        result += 1
-    print "compute_chain_length({}) = {}; {}".format(initial, result, values)
-    return result
+    if n in terminators:
+        values |= terminators[n]
 
-terminators = {145: 0,
-               169: 2,
-               363601: 2,
-               1454: 2, }[145, 169, 871, 872, 1454, 45361, 45362]
+    return values
 
-compute_chain_length(69, terminators)
-#
-# for t in terminators:
-#     result = str(t)
-#     t_next = factorial_of_digits(t)
-#     while t_next != t:
-#         result += " -> " + str(t_next)
-#         t_next = factorial_of_digits(t_next)
-#     result += " -> " + str(t)
-#     print result
+if __name__ == '__main__':
+    # example script call: ./problem74.py 1000000
+    terminators = {}
+    search_below = int(sys.argv[1])
+    chain_length_count = Counter()
+    for i in range(1, search_below):
+        if search_below > 100000:
+            printline("{}/{}".format(i, search_below))
+        chain = compute_chain_length(i, terminators)
+        terminators[i] = chain
+        chain_length_count[len(chain)] += 1
+
+
+    print
+    print "maximum chain length: ", max(chain_length_count)
+    print "how many of maximum length: ", chain_length_count[60]

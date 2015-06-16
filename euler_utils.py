@@ -1,31 +1,19 @@
 
 from operator import *
 import math
+import sys
 
-dct = dict()
-dct[1] = 1
-lst = []
-maxhops = 0
-maxhopsn = 0
+def printline(str):
+    ''' print progress line to stdout
 
-def hopsForNumber(n):
-    """Unfortunately, I don't remember what this function does
-    so this comment is pretty useless :P
-    """
-    global maxhops
-    global maxhopsn
-    hops = 0
-    if dct.has_key(n):
-        return dct[n]
-    if n % 2 == 0:
-        hops = hopsForNumber(n / 2) + 1
-    else:
-        hops = hopsForNumber(3 * n + 1) + 1
-    dct[n] = hops
-    if(hops  > maxhops):
-        maxhops = hops
-        maxhopsn = n
-    return hops
+    :param str:
+    :return:
+    '''
+    # \r is carriage return: take us back to the start.
+    sys.stdout.write('\r')
+    sys.stdout.write(str)
+    sys.stdout.flush()
+
 
 def divisors(n):
     """Finds all of the divisors for a given number, including 1 and itself.
