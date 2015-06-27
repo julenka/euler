@@ -2,6 +2,7 @@
 from operator import *
 import math
 import sys
+import numpy as np
 
 def printline(str):
     ''' print progress line to stdout
@@ -28,7 +29,7 @@ def divisors(n):
     return ans
 	
 def isprime(n):
-	return len(divisors(n)) == 2
+    return len(divisors(n)) == 2
 
 def waysToSum(goal, coins_to_use, index):
     """This function counts the number of ways that you can
@@ -150,8 +151,21 @@ def pentagonalNumber(n):
 def hexagonalNumber(n):
     return n * (2 * n - 1)
 
-def nChooseR(n, r):
-    return math.factorial(n) / (math.factorial(r) * math.factorial(n - r))
+def partitions(n):
+    """ Compute number of ways a set of n coins can uniquely be partitioned into groups
 
-    
-    
+    :param n:
+    :return:
+    """
+    # we use a dynamic programing approach:
+    # row is # of ways to sum to x, column is maximum value of terms in sum
+    # table[waystosumX][with smallestterm]
+    table = np.zeros((n+1,n+1))
+    table[1,1] = 1
+
+    for i in range(2,n+1):
+        table[i, i] = 1
+        for smallest_term in range(1, i):
+            table[i, smallest_term] = sum(table[i - smallest_term,smallest_term:i])
+
+    return sum(table[n,:])
