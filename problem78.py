@@ -31,6 +31,7 @@ try:
 except IndexError:
     print "usage: problem78.py MAX_VALUE MOD_VALUE"
 
+# http://www.had2know.com/academics/integer-partition-calculator.html
 # P(n) = Σ (-1)k+1[P(n - k(3k-1)/2) + P(n - k(3k+1)/2)],
 #
 # where k ranges from 1 to n. Because P(b) = 0 for all negative integers b, many of the terms in this series vanish. As an example, let's use the above formula to compute P(13) and P(15).
