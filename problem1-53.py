@@ -167,12 +167,12 @@ If the product of these four fractions is given in its lowest common terms, find
     nontrivial = list()
     for num in range(11, 100):
         numF = float(num)
-        numDs = zip(getDigits(num), getDigits(num, True))
+        numDs = zip(get_digits(num), get_digits(num, True))
         
         for denom in range(num + 1, 100):
 
             denomF = float(denom)
-            denomDs = zip(getDigits(denom), getDigits(denom, True))
+            denomDs = zip(get_digits(denom), get_digits(denom, True))
             
             goal = numF/denomF
 
@@ -205,7 +205,7 @@ def p34():
 
     result = []
     for i in range (1, 100000):
-        d = getDigits(i)
+        d = get_digits(i)
         digits = [factorial(x) for x in d]
         s = sum(digits)
         if s == i and len(digits) > 1: 
@@ -225,7 +225,7 @@ def p35():
     print primes
     ans = []
     for i in range(1, 1000000):
-        r = [digitsToNum(x) for x in rotations(getDigits(i))]
+        r = [digitsToNum(x) for x in rotations(get_digits(i))]
         prime = True
         rprime = [x for x in r if x in primes]
         if len(rprime) == len(r):

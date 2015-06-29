@@ -47,7 +47,7 @@ def waysToSum(goal, coins_to_use, index):
             ways += waysToSum(dif, coins_to_use, i)
     return ways
 
-def getDigits(number, reverse=False):
+def get_digits(number, reverse=False):
     result = []
     while number > 0:
         result.append(number % 10)
@@ -55,6 +55,17 @@ def getDigits(number, reverse=False):
     if(not reverse):
         result.reverse()
     return result
+
+def sum_digits(number) :
+    result = 0
+    while number > 0:
+        result += number % 10
+        number /= 10
+    return result
+
+def sum_digits_str(number_str):
+    return reduce(lambda acc, new: acc + int(new),number_str, 0)
+
 
 def generatePermutationsHelper(values):
     result = []
