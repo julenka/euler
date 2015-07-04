@@ -19,6 +19,26 @@ def primesfrom2to(n):
             sieve[k*(k-2*(i&1)+4)/3::2*k] = False
     return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
 
+from collections import Counter
+def prime_factorization(n):
+    """ A generator giving prime factors of n
+
+    prime_factorization(100): (2,2), (5,2)
+    :param n:
+    :return: (factor, multiplicity), (factor,multiplicity)
+    """
+    prime_factor = 2
+    result = Counter()
+    while prime_factor * prime_factor <= n:
+        while n % prime_factor == 0:
+            result[prime_factor] += 1
+            n /= prime_factor
+        prime_factor += 1
+    if n > 1:
+        result[n] += 1
+    return result.items()
+
+
 def get_totient(phi):
     """ Compute totient(i) for i in range(n) and stick it in phi
 

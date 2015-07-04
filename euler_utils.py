@@ -4,6 +4,8 @@ import math
 import sys
 import numpy as np
 
+from primes import prime_factorization
+
 def printline(str):
     ''' print progress line to stdout
 
@@ -20,14 +22,25 @@ def divisors(n):
     """Finds all of the divisors for a given number, including 1 and itself.
 
     Returns a list containing all the divisors for a number"""
-    ans = []
-    for i in range(1, int(math.floor(math.sqrt(n))) + 1):
-        if (n % i == 0):
-            ans.append(i)
-            if (i * i != n):
-                ans.append(n / i)
-    return ans
-	
+    if n == 1:
+        yield 1
+        return
+    factors = list(prime_factorization(n))
+    nfactors = len(factors)
+    f = [0] * nfactors
+    while True:
+        yield reduce(lambda a, b: a*b, [factors[x][0]**f[x] for x in range(nfactors)], 1)
+        i = 0
+        while True:
+            f[i] += 1
+            if f[i] <= factors[i][1]:
+                break
+            f[i] = 0
+            i += 1
+            if i >= nfactors:
+                return
+
+
 def isprime(n):
     return len(divisors(n)) == 2
 
