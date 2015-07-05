@@ -2,7 +2,7 @@
 # This file contains solutions to project euler problems
 # each function calculates the solution for a problem
 # and returns the answer.
-from euler_utils import *
+from utils.euler import *
 import numpy as np
 
 

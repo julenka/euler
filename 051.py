@@ -7,7 +7,7 @@ By replacing the 3rd and 4th digits of 56**3 with the same digit, this 5-digit n
 
 Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) with the same digit, is part of an eight prime value family.'''
 
-import euler_utils
+import utils.euler
 from collections import Counter, defaultdict
 from itertools import combinations
 # must be at least 8 primes in the range

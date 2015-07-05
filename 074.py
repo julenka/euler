@@ -27,7 +27,7 @@ import math
 import sys
 from collections import Counter
 
-from euler_utils import  printline
+from utils.euler import  printline
 
 def factorial_of_digits(n):
     if n == 0:

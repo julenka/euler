@@ -19,7 +19,7 @@ __author__ = 'julenka'
 # related to partition theory:
 # Related: https://en.wikipedia.org/wiki/Partition_(number_theory)#Partition_function
 
-from euler_utils import  partitions
+from utils.euler import  partitions
 import numpy as np
 import sys
 goal_value = int(sys.argv[1])

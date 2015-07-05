@@ -2,7 +2,7 @@
 __author__ = 'julenka'
 
 import collections
-import euler_utils
+import utils.euler
 
 def get_relprime(n):
     """ Compute all values relatively prime to n

@@ -10,7 +10,6 @@ such that for every divisor d of n, d+n/d is prime.
 """
 __author__ = 'julenka'
 
-from euler_utils import divisors
 from primes import primesfrom2to
 import math
 

@@ -11,7 +11,7 @@ for all the irrational square roots.
 """
 __author__ = 'julenka'
 
-from euler_utils import  sum_digits_str
+from utils.euler import  sum_digits_str
 import decimal
 decimal.getcontext().prec = 110
 
