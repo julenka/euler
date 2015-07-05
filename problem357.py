@@ -12,25 +12,23 @@ __author__ = 'julenka'
 
 from euler_utils import divisors
 from primes import primesfrom2to
+import math
 
 max_value = 100000000
 primes = set(primesfrom2to(max_value * 2))
 
 valid = []
 result = 0
-import time
-start_time = time.time()
+
+def test_number(n):
+    for i in xrange(1, int(math.sqrt(n)) ):
+        if n % i == 0:
+            if n / i + i in primes:
+                return True
+    return False
+
 for i in xrange(1, max_value):
-    if i % 1000000 == 0:
-        end_time = time.time()
-        elapsed = end_time - start_time
-        start_time = end_time
-        print i, elapsed, "seconds"
-    divisors_of_i = divisors(i)
-    for d in divisors_of_i:
-        if not (d + i / d in primes):
-            break
-    else:
+    if test_number(i):
         result += i
 
 print result
