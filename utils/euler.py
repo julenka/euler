@@ -175,6 +175,13 @@ def pentagonalNumber(n):
 def hexagonalNumber(n):
     return n * (2 * n - 1)
 
+def choose(n, r):
+    """
+    n choose r
+    """
+    return factorial(n) / (factorial(n - r) * factorial(r))
+
+
 def partitions(n):
     """ Compute number of ways a set of n coins can uniquely be partitioned into groups
 
