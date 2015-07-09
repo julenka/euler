@@ -42,7 +42,7 @@ def divisors(n):
 
 
 def is_prime(n):
-    return len(divisors(n)) == 2
+    return len(list(divisors(n))) == 2
 
 def ways_to_sum(goal, coins_to_use, index):
     """This function counts the number of ways that you can
