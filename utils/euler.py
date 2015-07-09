@@ -1,17 +1,17 @@
 
 from operator import *
-import math
 import sys
 import numpy as np
+import itertools
 
 from primes import prime_factorization
 
 def printline(str):
-    ''' print progress line to stdout
+    """ print progress line to stdout
 
     :param str:
     :return:
-    '''
+    """
     # \r is carriage return: take us back to the start.
     sys.stdout.write('\r')
     sys.stdout.write(str)
@@ -41,10 +41,10 @@ def divisors(n):
                 return
 
 
-def isprime(n):
+def is_prime(n):
     return len(divisors(n)) == 2
 
-def waysToSum(goal, coins_to_use, index):
+def ways_to_sum(goal, coins_to_use, index):
     """This function counts the number of ways that you can
     make the goal sum using the available coins. Coins to use
     is a list of possible coins you can use
@@ -57,7 +57,7 @@ def waysToSum(goal, coins_to_use, index):
         coin = coins_to_use[i]
         dif = goal - coin
         if dif >= 0:
-            ways += waysToSum(dif, coins_to_use, i)
+            ways += ways_to_sum(dif, coins_to_use, i)
     return ways
 
 def get_digits(number, reverse=False):
@@ -80,29 +80,16 @@ def sum_digits_str(number_str):
     return reduce(lambda acc, new: acc + int(new),number_str, 0)
 
 
-def generatePermutationsHelper(values):
-    result = []
-    if len(values) == 1:
-        return [values]
-    for v in values:
-        values_cp = list(values)
-        values_cp.remove(v)
-        perms = generatePermutationsHelper(values_cp)
-        for perm in perms:
-            perm.append(v)
-        result.extend(perms)
-    return result
-    
-def generatePermutations(n):
+def generate_permutations(n):
     """generates all permutations of the sequence of numbers
     from 1 to n
     """
-    return generatePermutationsHelper(range(1,n + 1))
+    return list(itertools.permutations(range(1, n + 1)))
 
 def factorial(x):
     return reduce(mul, range(1, x+1), 1)
 
-def digitsToNum(lst):
+def digits_to_num(lst):
     result = 0
     tens = 0
     for i in range(len(lst)):
@@ -120,7 +107,7 @@ def rotations(lst):
         result.append(rotate(lst, i))
     return result
 
-def toBase(val, base):
+def to_base(val, base):
     """ Converst val to base base, returns a string
     representation of the result"""
     lst = []
@@ -131,19 +118,19 @@ def toBase(val, base):
     lst.reverse()
     return "".join([str(x) for x in lst])
 
-def isPalindrome(val):
+def is_palindrome(val):
     """ Returns whether val is a palindrome"""
     l1 = list(val)
     l2 = list(val)
     l2.reverse()
     return l1 == l2
 
-def isPandigital(str_val):
+def is_pandigital(str_val):
     lst = list(str_val)
     lst.sort()
     return lst == [str(i) for i in range(1,len(str_val) + 1)]
 
-def is0Pandigital(str_val):
+def is_0_pandigital(str_val):
     lst = list(str_val)
     lst.sort()
     return lst == [str(i) for i in range(0,len(str_val) + 1)]
@@ -166,13 +153,13 @@ def allPerm(lst):
 
     return result;
 
-def triangleNumber(n):
+def triangle_number(n):
     return n * (n+1) / 2.0
 
-def pentagonalNumber(n):
+def pentagonal_number(n):
     return n * (3*n - 1) / 2.0
 
-def hexagonalNumber(n):
+def hexagonal_number(n):
     return n * (2 * n - 1)
 
 def choose(n, r):

@@ -86,7 +86,7 @@ def p27():
 			seq = []
 			n = 0
 			rslt = n * n + a * n + b
-			while rslt > 0 and (rslt in primes or isprime(rslt)):
+			while rslt > 0 and (rslt in primes or is_prime(rslt)):
 				seq.append(rslt)
 				if not rslt in primes:
 					primes.add(rslt)
@@ -132,10 +132,10 @@ def p30():
 
 def p31():
     pence = [1,2,5,10,20,50,100,200]
-    return waysToSum(200, pence, len(pence) - 1)
+    return ways_to_sum(200, pence, len(pence) - 1)
 
 def p32():
-    perms = generatePermutations(9)
+    perms = generate_permutations(9)
     results = set()
     for p in perms:
         first = p[0] * 10 + p[1]
@@ -221,11 +221,11 @@ def p35():
     
     How many circular primes are there below one million?
     """
-    primes = set([x for x in range(1, 1000000) if isprime(x)])
+    primes = set([x for x in range(1, 1000000) if is_prime(x)])
     print primes
     ans = []
     for i in range(1, 1000000):
-        r = [digitsToNum(x) for x in rotations(get_digits(i))]
+        r = [digits_to_num(x) for x in rotations(get_digits(i))]
         prime = True
         rprime = [x for x in r if x in primes]
         if len(rprime) == len(r):
@@ -242,10 +242,10 @@ def p36():
     """
     palindromes = []
     for i in range(1, 1000000):
-        base10 = toBase(i, 10)
-        if (isPalindrome(base10)):
-            base2 = toBase(i, 2)
-            if(isPalindrome(base2)):
+        base10 = to_base(i, 10)
+        if (is_palindrome(base10)):
+            base2 = to_base(i, 2)
+            if(is_palindrome(base2)):
                 palindromes.append(int(base10))
 
     return sum(palindromes)
@@ -261,7 +261,7 @@ def p37():
     truncatable_primes = []
     current = 11
     while len(truncatable_primes) < 11:
-        if(isprime(current)):
+        if(is_prime(current)):
             primes.add(current)
             curStr = str(current)
             # truncate from both left and right and see if prime at each step
@@ -385,7 +385,7 @@ def p41():
         primes.reverse()
 
         for p in primes:
-            if isPandigital(str(p)):
+            if is_pandigital(str(p)):
                 print p
 
 def p42():
@@ -533,9 +533,9 @@ from collections import defaultdict
 def p45():
     dct = defaultdict(lambda:0)
     for i in range(100000):
-        t = triangleNumber(i)
-        p = pentagonalNumber(i)
-        h = hexagonalNumber(i)
+        t = triangle_number(i)
+        p = pentagonal_number(i)
+        h = hexagonal_number(i)
         for j in [t,p,h]:
             dct[j] = dct[j] + 1
             if dct[j] >= 3:
