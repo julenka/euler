@@ -1,93 +1,45 @@
 #!/usr/bin/env python
 """ Under the rainbow
-70 colored balls are placed in an urn, 10 for each of the seven rainbow colors.
 
-What is the expected number of distinct colors in 20 randomly picked balls?
 
-Give your answer with nine digits after the decimal point (a.bcdefghij).
 """
 __author__ = 'julenka'
+from utils import euler
 
-# from utils import euler
-# from collections import Counter
-#
-# sets_of_balls = euler.choose(70, 20)
-# print sets_of_balls
-#
-# def rcr(n_balls, k_colors, max_size, depth):
-#     # print "{} rcr({},{},{}):".format("\t" * depth, n_balls, k_colors, max_size)
-#     if n_balls == 0 and k_colors == 0:
-#         return Counter({0: 1})
-#
-#     if n_balls == 0 or k_colors == 0:
-#         # print "{} rcr({},{},{}) return {}".format("\t" * depth, n_balls, k_colors, max_size, Counter({n_balls: k_colors}))
-#         return Counter({n_balls: k_colors})
-#
-#     if n_balls < 0:
-#         raise Exception("unexpected value n_balls {}".format(n_balls))
-#
-#     ways = rcr(n_balls, k_colors - 1, max_size, depth + 1)
-#
-#     for balls_for_color in xrange(1, min(n_balls + 1, max_size + 1)):
-#         if n_balls - balls_for_color < 0:
-#             continue
-#         ways2 = rcr(n_balls - balls_for_color, k_colors - 1, max_size, depth + 1)
-#         ways3 = Counter()
-#         for k, v in ways2.items():
-#             ways3[k + 1] = v
-#         ways += ways3
-#     # print "{} rcr({},{},{}) return {}".format("\t" * depth, n_balls, k_colors, max_size, ways)
-#     return ways
-#
-# total_ways = rcr(20, 7, 10, 0)
-# print total_ways
-#
-# result_sum = reduce(lambda y, x: x[0] * x[1] + y, total_ways.items(), 0)
-# print result_sum
-#
-# print float(result_sum) / sets_of_balls
-#
-# print float(result_sum) / sum(total_ways.values())
+num_colors = 7
+balls_per_color = 10
+max_pick = 20
+num_colors_to_count = {x: 0 for x in xrange(num_colors + 1)}
 
-from multiprocessing.pool import Pool
-import time
-import numpy as np
-from collections import Counter
+def rcr(colors_left, balls_left, acc):
+    """ Recursively Compute how many ways to pick n colors for n in [0, balls_per_color]
 
-counter = Counter()
-def job_worker(args):
-    num_iterations, worker_idx = args
-    balls = np.array([x / 10 for x in range(70)])
+    :param colors_left:
+    :param balls_left:
+    :param acc:
+    :return:
+    """
+    if balls_left < 0:
+        return
+    if balls_left == 0:
+        assert sum(acc.values()) == max_pick
+        num_colors_for_set = len(filter(lambda x: x > 0, acc.values()))
+        ways = 1
+        for _, count in acc.items():
+            ways *= euler.choose(balls_per_color, count)
+        num_colors_to_count[num_colors_for_set] += ways
+        return
+    if colors_left <= 0:
+        return
 
-    balls_to_pick = 20
+    for n in xrange(balls_per_color + 1):
+        color_idx = num_colors - colors_left
+        acc[color_idx] = n
+        rcr(colors_left - 1, balls_left - n, acc)
+        acc[color_idx] = 0
 
-    expected_value_sum = 0
-    start_time = time.time()
+rcr(num_colors, max_pick, {}, 0)
 
-    for i in xrange(num_iterations):
-        np.random.shuffle(balls)
-        print balls
-        picked_balls = set(balls[:balls_to_pick])
-        expected_value_sum += len(picked_balls)
-        counter[len(picked_balls)] += 1
-        if i % 1000000 == 0:
-            elapsed = time.time() - start_time
-            print "worker", worker_idx, i, expected_value_sum, "elapsed", elapsed
-            start_time = time.time()
-    return expected_value_sum
+s2 = reduce(lambda y, x: x[0] * x[1] + y, num_colors_to_count.items(), 0)
 
-
-num_workers = 1
-
-iterations_per_worker = 1375400
-#
-# pool = Pool(processes=num_workers)
-# input_array = [iterations_per_worker] * num_workers
-# results = pool.map(job_worker, zip(input_array, xrange(num_workers)))
-result = job_worker((iterations_per_worker, 1))
-print result
-
-
-print result / (iterations_per_worker * num_workers)
-
-print counter
+print float(s2) / euler.choose(70, 20)
