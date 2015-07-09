@@ -61,7 +61,6 @@ if __name__ == '__main__':
         terminators[i] = chain
         chain_length_count[len(chain)] += 1
 
-
     print
     print "maximum chain length: ", max(chain_length_count)
     print "how many of maximum length: ", chain_length_count[60]
