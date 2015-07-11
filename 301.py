@@ -22,3 +22,4 @@ For example X(1,2,3) = 0 because, no matter what the current player does, his op
 For how many positive integers n ≤ 230 does X(n,2n,3n) = 0 ?
 """
 __author__ = 'julenka'
+
