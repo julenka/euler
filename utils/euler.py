@@ -6,6 +6,7 @@ import itertools
 
 from primes import prime_factorization
 
+
 def printline(str):
     """ print progress line to stdout
 
@@ -125,10 +126,17 @@ def is_palindrome(val):
     l2.reverse()
     return l1 == l2
 
-def is_pandigital(str_val):
-    lst = list(str_val)
-    lst.sort()
-    return lst == [str(i) for i in range(1,len(str_val) + 1)]
+def is_pandigital(value):
+    digits = set()
+    for i in range(1,10):
+        digit = value % 10
+        if digit == 0:
+            return False
+        digits.add(digit)
+        value = value / 10
+        if len(digits) < i:
+            return False
+    return True
 
 def is_0_pandigital(str_val):
     lst = list(str_val)
