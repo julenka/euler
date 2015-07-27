@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-# coding=utf-8
+    #!/usr/bin/env python
+    # coding=utf-8
 """ Largest integer divisible by 2 primes
 
 The largest integer ≤ 100 that is only divisible by both the primes 2 and 3 is 96, as 96=32*3=25*3.
