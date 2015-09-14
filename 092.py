@@ -25,7 +25,7 @@ def add_square_digits(n):
 
 answer = 0
 cache = {1:1, 89: 89}
-for i in range(1,10 ** 7):
+for i in range(1,10 ** 1):
     print i
     cur = i
     chain = [i]
@@ -37,7 +37,6 @@ for i in range(1,10 ** 7):
             cache[link] = cur
     if cache[cur] == 89:
         answer += 1
-
 
 
 print answer
