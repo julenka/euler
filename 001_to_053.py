@@ -51,7 +51,7 @@ def p17():
 
 def p25():
     first = 1
-    second = 1	
+    second = 1
     term =2
     while (len(list(str(second))) < 1000):
         tmp = second
@@ -59,7 +59,7 @@ def p25():
         first = tmp
         term = term + 1
     return term
-	
+
 def p26():
     cycles = []
     for val in range (2, 1000):
@@ -74,36 +74,36 @@ def p26():
             cycles.append(0)
         else:
             cycles.append(len(remainders) - remainders.index(r))
-	ans = max(cycles)
-	return cycles.index(ans) + 2
-	
+    ans = max(cycles)
+    return cycles.index(ans) + 2
+
 def p27():
-	maxlen = 0
-	maxprod = 0
-	primes = set()
-	for a in range(-1000, 1001):
-		for b in range(-1000, 1001):
-			seq = []
-			n = 0
-			rslt = n * n + a * n + b
-			while rslt > 0 and (rslt in primes or is_prime(rslt)):
-				seq.append(rslt)
-				if not rslt in primes:
-					primes.add(rslt)
-				n = n + 1
-				rslt = n * n + a * n + b
-			if (len(seq) > maxlen):
-				print "a: %i b: %i seq: %s" % (a, b, seq)
-				maxlen = len(seq)
-				maxprod = a * b
-	
-	return maxprod
-			
+    maxlen = 0
+    maxprod = 0
+    primes = set()
+    for a in range(-1000, 1001):
+        for b in range(-1000, 1001):
+            seq = []
+            n = 0
+            rslt = n * n + a * n + b
+            while rslt > 0 and (rslt in primes or is_prime(rslt)):
+                seq.append(rslt)
+                if not rslt in primes:
+                    primes.add(rslt)
+                n = n + 1
+                rslt = n * n + a * n + b
+            if (len(seq) > maxlen):
+                print(f"a: {a} b: {b} seq: {seq}")
+                maxlen = len(seq)
+                maxprod = a * b
+
+    return maxprod
+
 def p28():
     answer = 1
     curval = 1
     for i in range(3, 1002, 2):
-        print i
+        print(i)
         for j in range(0, 4):
             curval = curval + i - 1
             answer = answer + curval
@@ -126,7 +126,7 @@ def p30():
             s = s + pow(digit, 5)
             i = i / 10
         if s == save:
-            print s
+            print(s)
             ans = ans + s
     return ans
 
@@ -149,7 +149,7 @@ def p32():
         if first * second == product:
             results.add(product)
 
-    print results
+    print(results)
     answer = 0
     for r in results:
         answer += r
@@ -210,7 +210,7 @@ def p34():
         s = sum(digits)
         if s == i and len(digits) > 1: 
             result.append(s)
-    print result
+    print(result)
     return sum(result)
 
 def p35():
@@ -222,7 +222,7 @@ def p35():
     How many circular primes are there below one million?
     """
     primes = set([x for x in range(1, 1000000) if is_prime(x)])
-    print primes
+    print(primes)
     ans = []
     for i in range(1, 1000000):
         r = [digits_to_num(x) for x in rotations(get_digits(i))]
@@ -281,7 +281,7 @@ def p37():
             
             if valid:
                 truncatable_primes.append(current)
-                print "truncatable: ", current, " len: ", len(truncatable_primes)
+                print(f"truncatable: {current} len: {len(truncatable_primes)}")
         # increment by 2 since even numbers are never prime    
         current += 2
     return truncatable_primes
@@ -348,7 +348,7 @@ def p39():
                     if not perimCounts.has_key(perim):
                         perimCounts[perim] = 0
                     perimCounts[perim] += 1
-    print perimCounts[120]
+    print(perimCounts[120])
     maxPerimValue = 0
     maxPerim = 0
     for (k,v) in perimCounts.items():
@@ -377,16 +377,16 @@ def p41():
     Find the largest n-digit pandigital prime that exists?
     """
     for i in range(2,8):
-        print "looking at pandigital values of length %i " % (i)
+        print(f"looking at pandigital values of length {i}")
         maxv = int("".join([str(j) for j in range(i,0,-1)]))
-        print "getting primes..."
+        print("getting primes...")
         primes = primesUpTo(maxv)
         primes = [x for x in primes if len(str(x)) == i]
         primes.reverse()
 
         for p in primes:
             if is_pandigital(str(p)):
-                print p
+                print(p)
 
 def p42():
     """
@@ -405,8 +405,8 @@ def p42():
         numerator = -1 - math.sqrt(1 + 8 * i)
         if numerator % 2 == 0:
             total+=1
-            print i
-    print "total: %i" %(total)
+            print(i)
+    print(f"total: {total}")
     
     
 
@@ -446,7 +446,7 @@ def p43():
     nums = [p43helper(i) for i in factors]
     nums.insert(0, range(0,10))
     allVals = p43h2([""], nums)
-    print sum([int(x) for x in allVals])
+    print(sum([int(x) for x in allVals]))
 
 
 def p52():
@@ -486,7 +486,7 @@ def p112():
     for i in range(1,10000000):
         bouncy = numBouncy(i, bouncy)
         if(bouncy / float(i) == 0.99 ):
-            print "i: %i bouncy: %i" %(i,bouncy)
+            print(f"i: {i} bouncy: {bouncy}")
             return
 
 def david():
@@ -502,7 +502,7 @@ def david():
     for i in range(len(cipher)):
         answer.append(chr(ord('a') + cipher[i] - int(s[i]) - 1))
 
-        print "".join(answer)
+        print("".join(answer))
 
 def p44():
     '''Project euler problem 44
@@ -515,7 +515,7 @@ def p44():
     Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference is pentagonal and D = |Pk - Pj| is minimised; what is the value of D?
     '''
     pentagonalNumbers = [x * (3 * x - 1) / 2 for x in range(1, 5000)]
-    print pentagonalNumbers[0:100]
+    print(pentagonalNumbers[0:100])
     minD = 1000000
     for j, pj in enumerate(pentagonalNumbers):
         for k,pk in enumerate(pentagonalNumbers):
@@ -523,11 +523,11 @@ def p44():
                 continue
             if pk + pj in pentagonalNumbers:
                 if pk - pj in pentagonalNumbers:
-                    print "pj: {}, pk: {}, dif: {}".format(pj, pk, abs(pk - pj))
+                    print("pj: {}, pk: {}, dif: {}".format(pj, pk, abs(pk - pj)))
                     if(abs(pk - pj) < minD):
                         minD = abs(pk - pj)
 
-    print "minD: {}".format(minD)
+    print("minD: {}".format(minD))
 
 from collections import defaultdict
 def p45():
@@ -539,7 +539,7 @@ def p45():
         for j in [t,p,h]:
             dct[j] = dct[j] + 1
             if dct[j] >= 3:
-                print j
+                print(j)
 
 def p46():
     primes = primesUpTo(10000)
@@ -550,7 +550,7 @@ def p46():
         for s in squares:
             vals[p + 2 * s] = True
     left = [k for (k,v) in vals.items() if not v]
-    print min(left)
+    print(min(left))
 
 def prime_factorization(n, primes_list, acc):
     if (n in primes_list):
@@ -565,23 +565,23 @@ def p47():
     Find the first four consecutive integers to have four distinct prime factors. What is the first of these numbers?'''
     mx = 200000
     consec_count = 4
-    print "getting primes up to {}".format(mx)
+    print("getting primes up to {}".format(mx))
     primes = primesUpTo(mx)
     factor_table = {}
-    print "getting prime factorization..."
+    print("getting prime factorization...")
     for i in range(2,mx):
-        print i
+        print(i)
         unique_factors = set(prime_factorization(i, primes, 0))
         if not len(unique_factors) in factor_table:
             factor_table[len(unique_factors)] = []
         factor_table[len(unique_factors)].append(i)
-    print "finding desirable factors..."
+    print("finding desirable factors...")
     desired_factors = np.array(factor_table[consec_count])
-    print desired_factors
+    print(desired_factors)
     difference_between = desired_factors[consec_count -1:] - desired_factors[:-(consec_count - 1)]
     index = np.argmax(difference_between == consec_count - 1)
-    print index
-    print desired_factors[index]
+    print (index)
+    print (desired_factors[index])
 
 
 def p48():
@@ -593,9 +593,9 @@ def p48():
         for p in range(i - 1):
             toAdd = (toAdd * i) % modMe
         result = (result + toAdd) % modMe
-        print i, toAdd, result
+        print(f"{i}, {toAdd}, {result}")
 
-    print result
+    print(result)
 
 def p49():
     '''
@@ -618,7 +618,7 @@ What 12-digit number do you form by concatenating the three terms in this sequen
                     continue
                 if(primes[j] - primes[i] == primes[k] - primes[j]):
                     result.append((primes[i], primes[j], primes[k]))
-    print result
+    print(result)
 
 def p50():
     ''' Largest sum of consecutive primes
@@ -641,10 +641,9 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 
     while len(inspect_list) > 0:
         to_inspect = inspect_list.popleft()
-        print len(to_inspect), sum(to_inspect)
+        print([len(to_inspect), sum(to_inspect)])
         s = sum(to_inspect)
         if s in primes_below_one_mil:
-            print "sum is: ", s, " primes are ", to_inspect
             return s;
         inspection_candidate = to_inspect[1:]
         inspection_candidate_s = "%d,%d" % (inspection_candidate[0], inspection_candidate[-1])
@@ -659,7 +658,7 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
             examined.add(inspection_candidate_s)
                 
 
-    print "no consecutive primes summing to prime found!!"
+    print("no consecutive primes summing to prime found!!")
 
 def p53():
     '''How many, not necessarily distinct, values of  nCr, for 1 <= n <= 100, are greater than one-million?'''
@@ -668,7 +667,7 @@ def p53():
         for r in xrange(1, n):
             if(nChooseR(n, r) > 1000000):
                 count+=1
-    print count
+    print(count)
 
 if __name__ == '__main__':
     p53()
